@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogLaguController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/catalog', [CatalogLaguController::class, 'index'])->name('catlog.index');
+Route::get('/catalog/tambah', [CatalogLaguController::class, 'create'])->name('catlog.create');
+Route::post('/catalog/tambah', 'CatalogLaguController@store')->name('catlog.store');
+Route::get('/catalog/{id}', 'CatalogLaguController@edit')->name('catlog.edit');
+Route::put('/catalog/{catalogLagu}', 'CatalogLaguController@update')->name('catlog.update');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
